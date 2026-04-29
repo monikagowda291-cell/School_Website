@@ -1,0 +1,392 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NAVODAYA CONVENT & HIGH SCHOOL</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;scroll-behavior:smooth}
+body{background:#fff4f4;color:#333;overflow-x:hidden;line-height:1.6}
+img{max-width:100%;display:block}
+
+/* NAVBAR */
+nav{
+background:#228b22;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:12px 28px;
+flex-wrap:wrap;
+position:sticky;
+top:0;
+z-index:1000;
+}
+.logo-box{display:flex;align-items:center;gap:15px}
+.logo-box img{
+width:70px;height:70px;border-radius:50%;background:#fff;padding:4px
+}
+.school-title h2{color:#fff;font-size:22px}
+.school-title p{color:#fff;font-size:13px}
+.menu{display:flex;gap:25px;flex-wrap:wrap}
+.menu a{
+color:white;text-decoration:none;font-weight:bold;font-size:18px
+}
+.menu a:hover{color:#ffd6ff}
+
+header{
+background:linear-gradient(to right,#dc0ab2,#6406e9);
+color:white;text-align:center;padding:30px
+}
+header h1{font-size:42px;margin-bottom:10px}
+header p{font-size:18px}
+
+.hero{
+background:url('https://images.unsplash.com/photo-1509062522246-3755977927d7') center/cover;
+height:500px;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+text-align:center;
+color:white;
+}
+.hero-box{
+background:rgba(0,0,0,.6);
+padding:40px;border-radius:20px
+}
+.hero h2{font-size:50px;margin-bottom:15px}
+.hero p{font-size:24px}
+
+section{padding:55px 30px;text-align:center}
+h2{color:#ff1493;font-size:35px;margin-bottom:25px}
+.about p{max-width:900px;margin:auto;font-size:20px}
+
+/* FACILITIES */
+.cards{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:30px;
+margin-top:30px
+}
+.card{
+background:#fff;
+width:280px;
+padding:25px;
+border-radius:20px;
+box-shadow:0 5px 15px rgba(0,0,0,.18);
+cursor:pointer;
+transition:.4s;
+animation:floatCard 4s infinite ease-in-out;
+}
+.card:hover{transform:translateY(-10px) scale(1.03)}
+.card h3{color:green}
+.info{
+max-height:0;
+overflow:hidden;
+opacity:0;
+transition:.5s
+}
+.card.active .info{
+max-height:300px;
+opacity:1;
+margin-top:15px
+}
+
+.gallery{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:20px
+}
+.gallery img{
+width:320px;
+height:230px;
+object-fit:cover;
+border-radius:18px
+}
+
+.contact{background:#ffe4f2}
+.contact p{font-size:22px;margin:10px}
+
+/* SOCIAL */
+.social-icons{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+margin-top:25px
+}
+.social-icons a{
+text-decoration:none;
+background:white;
+padding:12px 18px;
+border-radius:20px;
+display:flex;
+align-items:center;
+gap:12px;
+font-size:16px;
+font-weight:bold;
+color:#333;
+box-shadow:0 5px 15px rgba(0,0,0,.15)
+}
+.social-icons img{width:28px;height:28px}
+
+.apply-btn{
+margin-top:30px;
+background:#228b22;
+color:white;
+border:none;
+padding:15px 35px;
+font-size:20px;
+border-radius:30px;
+cursor:pointer
+}
+.apply-btn:hover{background:#ff1493}
+
+.form-box{
+display:none;
+max-width:650px;
+margin:30px auto;
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 5px 20px rgba(0,0,0,.18)
+}
+.form-box input,
+.form-box select,
+.form-box textarea{
+width:100%;
+padding:15px;
+margin:12px 0;
+border:1px solid #ccc;
+border-radius:10px
+}
+.submit-btn{
+background:#228b22;
+color:white;
+border:none;
+padding:15px 30px;
+border-radius:25px;
+cursor:pointer
+}
+
+footer{
+background:#228b22;
+color:white;
+padding:20px;
+text-align:center;
+margin-top:30px
+}
+
+@keyframes floatCard{
+0%{transform:translateY(0)}
+50%{transform:translateY(-10px)}
+100%{transform:translateY(0)}
+}
+
+/* RESPONSIVE */
+@media (max-width:1024px){
+.menu{gap:15px}
+.hero h2{font-size:40px}
+}
+
+@media (max-width:768px){
+nav{flex-direction:column;gap:14px;padding:14px}
+.logo-box{flex-direction:column;text-align:center}
+.logo-box img{width:60px;height:60px}
+.school-title h2{font-size:18px}
+.menu{justify-content:center;gap:12px}
+.menu a{font-size:16px}
+header h1{font-size:30px}
+.hero{height:420px}
+.hero-box{padding:25px}
+.hero h2{font-size:32px}
+.hero p{font-size:18px}
+section{padding:40px 18px}
+h2{font-size:28px}
+.about p{font-size:18px}
+.card{width:100%;max-width:340px}
+.gallery img{width:100%;max-width:350px;height:auto}
+.contact p{font-size:18px}
+.form-box{padding:20px}
+}
+
+@media (max-width:480px){
+header h1{font-size:24px}
+header p{font-size:14px}
+.menu{flex-direction:column;gap:8px}
+.menu a{font-size:15px}
+.hero{height:350px}
+.hero h2{font-size:26px}
+.hero p{font-size:16px}
+h2{font-size:24px}
+.about p{font-size:16px}
+.social-icons{flex-direction:column;align-items:center}
+.social-icons a{width:220px;justify-content:center}
+.apply-btn{font-size:16px;padding:12px 22px}
+.submit-btn{width:100%}
+}
+</style>
+</head>
+<body>
+
+<nav>
+<div class="logo-box">
+<img src="logo1.jpeg" alt="School Logo">
+<div class="school-title">
+<h2>NAVODAYA CONVENT & HIGH SCHOOL</h2>
+<p>Avathi, Devanahalli(T), Bangalore Rural District</p>
+</div>
+</div>
+
+<div class="menu">
+<a href="#">Home</a>
+<a href="#about">About</a>
+<a href="#facilities">Facilities</a>
+<a href="#gallery">Gallery</a>
+<a href="#contact">Contact</a>
+</div>
+</nav>
+
+<header>
+<h1>NAVODAYA CONVENT & HIGH SCHOOL</h1>
+<p>Quality Education for a Bright Future</p>
+</header>
+
+<div class="hero">
+<div class="hero-box">
+<h2>Welcome to Our School</h2>
+<p>Learning Today, Leading Tomorrow</p>
+</div>
+</div>
+
+<section id="about" class="about">
+<h2>About Our School</h2>
+<p>
+NAVODAYA CONVENT & HIGH SCHOOL was established in 1988 and is managed by Pvt. Unaided. It is located in a rural area and provides quality education with discipline, values and excellence. The school has Grades 1 to 10 and is co-educational.
+</p>
+</section>
+
+<section id="facilities">
+<h2>Our Facilities</h2>
+<div class="cards">
+
+<div class="card" onclick="toggleInfo(this)">
+<h3>Smart Classrooms</h3>
+<div class="info">Interactive smart boards, projectors and digital learning tools.</div>
+</div>
+
+<div class="card" onclick="toggleInfo(this)">
+<h3>Robotics and AI Classes</h3>
+<div class="info">Hands-on robotics projects and AI learning.</div>
+</div>
+
+<div class="card" onclick="toggleInfo(this)">
+<h3>Computer Lab</h3>
+<div class="info">Modern systems for coding and digital education.</div>
+</div>
+
+<div class="card" onclick="toggleInfo(this)">
+<h3>Science Lab</h3>
+<div class="info">Well-equipped practical laboratories.</div>
+</div>
+
+<div class="card" onclick="toggleInfo(this)">
+<h3>Library</h3>
+<div class="info">Academic books, references and journals.</div>
+</div>
+
+<div class="card" onclick="toggleInfo(this)">
+<h3>Sports</h3>
+<div class="info">Indoor and outdoor sports activities.</div>
+</div>
+
+<div class="card" onclick="toggleInfo(this)">
+<h3>Admission Open</h3>
+<div class="info">Admissions available from Grade 1 to 10.</div>
+</div>
+
+</div>
+</section>
+
+<section id="gallery">
+<h2>School Gallery</h2>
+<div class="gallery">
+<img src="unnamed.webp" alt="School">
+<img src="https://images.unsplash.com/photo-1509062522246-3755977927d7" alt="Classroom">
+</div>
+</section>
+
+<section id="contact" class="contact">
+<h2>Contact Us</h2>
+<p><b>Phone:</b> 8105857102</p>
+<p><b>Address:</b> Avathi, Devanahalli(T), Bangalore Rural District</p>
+
+<h3 style="margin-top:30px;color:#ff1493;">Follow Us</h3>
+
+<div class="social-icons">
+<a href="https://instagram.com/your_instagram_username" target="_blank">
+<img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png">
+<span>Instagram</span>
+</a>
+
+<a href="https://youtube.com/@your_channel" target="_blank">
+<img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png">
+<span>YouTube</span>
+</a>
+</div>
+
+<button class="apply-btn" onclick="openForm()">
+Admissions Are Open - Apply Now
+</button>
+
+<div id="admissionForm" class="form-box">
+<h2>Admission Application Form</h2>
+
+<form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+<input type="text" name="student_name" placeholder="Student Name" required>
+<input type="text" name="parent_name" placeholder="Parent Name" required>
+<input type="tel" name="phone" placeholder="Phone Number" required>
+<input type="email" name="email" placeholder="Email">
+
+<select name="grade" required>
+<option value="">Select Grade</option>
+<option>1st Standard</option>
+<option>2nd Standard</option>
+<option>3rd Standard</option>
+<option>4th Standard</option>
+<option>5th Standard</option>
+<option>6th Standard</option>
+<option>7th Standard</option>
+<option>8th Standard</option>
+<option>9th Standard</option>
+<option>10th Standard</option>
+</select>
+
+<textarea name="address" placeholder="Address"></textarea>
+
+<button class="submit-btn" type="submit">Submit Application</button>
+</form>
+</div>
+</section>
+
+<footer>
+<p>© 2026 NAVODAYA CONVENT & HIGH SCHOOL | All Rights Reserved</p>
+</footer>
+
+<script>
+function toggleInfo(card){
+card.classList.toggle('active');
+}
+
+function openForm(){
+const form=document.getElementById('admissionForm');
+form.style.display=(form.style.display==='block')?'none':'block';
+}
+</script>
+
+</body>
+</html>
+```
