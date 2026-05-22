@@ -1,806 +1,914 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>NAVODAYA CONVENT & HIGH SCHOOL</title>
-
-<style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Arial, sans-serif;
-  scroll-behavior:smooth;
-}
-
-body{
-  background:#071739;
-  color:white;
-  overflow-x:hidden;
-  line-height:1.6;
-  padding-top:95px;
-}
-
-img{
-  max-width:100%;
-  display:block;
-}
-
-/* NAVBAR */
-nav{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  background:rgba(4,15,40,0.96);
-  backdrop-filter:blur(10px);
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:14px 35px;
-  z-index:1000;
-  box-shadow:0 5px 20px rgba(0,0,0,0.4);
-  animation:slideDown 1s ease;
-}
-
-.logo-box{
-  display:flex;
-  align-items:center;
-  gap:14px;
-}
-
-.logo-box img{
-  width:58px;
-  height:58px;
-  border-radius:50%;
-  background:white;
-  padding:3px;
-  border:2px solid white;
-  transition:0.5s;
-}
-
-.logo-box img:hover{
-  transform:rotate(360deg);
-}
-
-.school-title h2{
-  font-size:22px;
-  color:white;
-  line-height:1.2;
-}
-
-.school-title p{
-  font-size:12px;
-  color:#d9d9d9;
-  margin-top:2px;
-}
-
-.menu{
-  display:flex;
-  gap:18px;
-  align-items:center;
-}
-
-.menu a{
-  position:relative;
-  text-decoration:none;
-  color:white;
-  font-size:16px;
-  font-weight:600;
-  padding:10px 16px;
-  border-radius:10px;
-  transition:0.4s;
-  overflow:hidden;
-}
-
-.menu a::before{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:0;
-  width:0%;
-  height:100%;
-  background:white;
-  z-index:-1;
-  transition:0.4s;
-  border-radius:10px;
-}
-
-.menu a:hover::before{
-  width:100%;
-}
-
-.menu a:hover{
-  color:#071739;
-  transform:translateY(-2px);
-}
-
-.menu-btn{
-  display:none;
-  font-size:32px;
-  color:white;
-  cursor:pointer;
-  user-select:none;
-}
-
-/* HEADER */
-header{
-  background:linear-gradient(to right,#0d1f4f,#13306d);
-  text-align:center;
-  padding:45px 20px;
-}
-
-header h1{
-  font-size:42px;
-  margin-bottom:10px;
-}
-
-header p{
-  font-size:18px;
-  color:#e0e0e0;
-}
-
-/* HERO */
-.hero{
-  background:url('https://images.unsplash.com/photo-1509062522246-3755977927d7') center/cover;
-  min-height:500px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:20px;
-  text-align:center;
-}
-
-.hero-box{
-  background:rgba(0,0,0,0.65);
-  padding:40px;
-  border-radius:20px;
-  max-width:700px;
-  animation:fadeUp 1s ease;
-}
-
-.hero h2{
-  font-size:50px;
-  margin-bottom:15px;
-}
-
-.hero p{
-  font-size:24px;
-}
-
-/* SECTION BASE */
-section{
-  padding:60px 30px;
-  text-align:center;
-}
-
-section h2{
-  font-size:36px;
-  margin-bottom:25px;
-  color:white;
-}
-
-.about p{
-  max-width:900px;
-  margin:auto;
-  font-size:20px;
-  color:#f0f0f0;
-}
-
-/* SIDE-BY-SIDE FACILITIES + PHOTOS */
-.split-section{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:24px;
-  align-items:start;
-  padding:60px 30px;
-}
-
-.panel{
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.12);
-  border-radius:22px;
-  padding:24px;
-  box-shadow:0 8px 24px rgba(0,0,0,0.22);
-  overflow:hidden;
-}
-
-.panel h2{
-  margin-bottom:20px;
-}
-
-/* FACILITIES ANIMATION */
-.facility-grid{
-  display:grid;
-  grid-template-columns:repeat(2, minmax(0,1fr));
-  gap:16px;
-}
-
-.card{
-  background:white;
-  color:#071739;
-  padding:22px;
-  border-radius:18px;
-  box-shadow:0 5px 18px rgba(0,0,0,0.22);
-  cursor:pointer;
-  transition:0.35s;
-  animation:cardFloat 4s ease-in-out infinite;
-  border:1px solid #dfe7ff;
-}
-
-.card:hover{
-  transform:translateY(-8px) scale(1.02);
-}
-
-.card h3{
-  margin-bottom:10px;
-  color:#0d1f4f;
-}
-
-.info{
-  max-height:0;
-  overflow:hidden;
-  opacity:0;
-  transition:0.5s ease;
-  font-size:15px;
-  color:#333;
-}
-
-.card.active .info{
-  max-height:180px;
-  opacity:1;
-  margin-top:10px;
-}
-
-/* PHOTOS ANIMATION */
-.photo-grid{
-  display:grid;
-  grid-template-columns:repeat(2, minmax(0,1fr));
-  gap:16px;
-}
-
-.photo{
-  border-radius:18px;
-  overflow:hidden;
-  position:relative;
-  box-shadow:0 5px 18px rgba(0,0,0,0.25);
-  animation:photoZoom 5s ease-in-out infinite;
-}
-
-.photo img{
-  width:100%;
-  height:220px;
-  object-fit:cover;
-  display:block;
-  transition:0.4s;
-}
-
-.photo:hover img{
-  transform:scale(1.06);
-}
-
-/* CONTACT */
-.contact{
-  background:#0d1f4f;
-}
-
-.contact p{
-  font-size:20px;
-  margin:10px;
-}
-
-/* SOCIAL */
-.social-icons{
-  display:flex;
-  justify-content:center;
-  gap:20px;
-  flex-wrap:wrap;
-  margin-top:25px;
-}
-
-.social-icons a{
-  text-decoration:none;
-  background:white;
-  padding:12px 18px;
-  border-radius:18px;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  font-size:16px;
-  font-weight:bold;
-  color:#071739;
-  transition:0.4s;
-}
-
-.social-icons a:hover{
-  transform:translateY(-5px);
-}
-
-.social-icons img{
-  width:28px;
-  height:28px;
-}
-
-/* BUTTON */
-.apply-btn{
-  margin-top:30px;
-  background:white;
-  color:#071739;
-  border:none;
-  padding:15px 35px;
-  font-size:18px;
-  font-weight:bold;
-  border-radius:30px;
-  cursor:pointer;
-  transition:0.4s;
-}
-
-.apply-btn:hover{
-  background:#dbe7ff;
-}
-
-/* FORM */
-.form-box{
-  display:none;
-  max-width:650px;
-  margin:30px auto;
-  background:white;
-  color:#071739;
-  padding:30px;
-  border-radius:20px;
-  box-shadow:0 5px 20px rgba(0,0,0,0.3);
-  text-align:left;
-}
-
-.form-box input,
-.form-box select,
-.form-box textarea{
-  width:100%;
-  padding:15px;
-  margin:12px 0;
-  border:1px solid #ccc;
-  border-radius:10px;
-  font-size:15px;
-}
-
-.submit-btn{
-  background:#071739;
-  color:white;
-  border:none;
-  padding:15px 30px;
-  border-radius:25px;
-  cursor:pointer;
-  font-size:16px;
-}
-
-/* FOOTER */
-footer{
-  background:#04112e;
-  padding:20px;
-  text-align:center;
-  margin-top:30px;
-}
-
-/* ANIMATIONS */
-@keyframes slideDown{
-  from{
-    transform:translateY(-100%);
-    opacity:0;
-  }
-  to{
-    transform:translateY(0);
-    opacity:1;
-  }
-}
-
-@keyframes fadeUp{
-  from{
-    opacity:0;
-    transform:translateY(20px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-}
-
-@keyframes cardFloat{
-  0%,100%{
-    transform:translateY(0);
-  }
-  50%{
-    transform:translateY(-8px);
-  }
-}
-
-@keyframes photoZoom{
-  0%,100%{
-    transform:scale(1);
-  }
-  50%{
-    transform:scale(1.03);
-  }
-}
-
-/* RESPONSIVE */
-@media(max-width:900px){
-  .split-section{
-    grid-template-columns:1fr;
-  }
-}
-
-@media(max-width:768px){
-  nav{
-    flex-direction:column;
-    align-items:flex-start;
-    padding:15px 20px;
-  }
-
-  .logo-box{
-    width:100%;
-    justify-content:space-between;
-  }
-
-  .menu-btn{
-    display:block;
-  }
-
-  .menu{
-    display:none;
-    width:100%;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:12px;
-    margin-top:15px;
-    animation:fadeIn 0.5s ease;
-  }
-
-  .menu.active{
-    display:flex;
-  }
-
-  .menu a{
-    background:rgba(255,255,255,0.08);
-    width:45%;
-    text-align:center;
-    padding:12px;
-    font-size:15px;
-  }
-
-  .school-title h2{
-    font-size:17px;
-  }
-
-  .school-title p{
-    font-size:11px;
-  }
-
-  header h1{
-    font-size:30px;
-  }
-
-  .hero{
-    min-height:380px;
-  }
-
-  .hero-box{
-    padding:25px;
-  }
-
-  .hero h2{
-    font-size:30px;
-  }
-
-  .hero p{
-    font-size:18px;
-  }
-
-  section{
-    padding:45px 18px;
-  }
-
-  section h2{
-    font-size:28px;
-  }
-
-  .about p{
-    font-size:17px;
-  }
-
-  .facility-grid,
-  .photo-grid{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .photo img{
-    height:180px;
-  }
-
-  .contact p{
-    font-size:17px;
-  }
-
-  .form-box{
-    padding:20px;
-  }
-}
-
-@media(max-width:480px){
-  .menu a{
-    width:48%;
-    font-size:14px;
-    padding:10px;
-  }
-
-  .logo-box img{
-    width:50px;
-    height:50px;
-  }
-
-  .school-title h2{
-    font-size:15px;
-  }
-
-  header h1{
-    font-size:24px;
-  }
-
-  .hero{
-    min-height:320px;
-  }
-
-  .hero h2{
-    font-size:25px;
-  }
-
-  .hero p{
-    font-size:15px;
-  }
-
-  section h2{
-    font-size:24px;
-  }
-
-  .about p{
-    font-size:15px;
-  }
-
-  .facility-grid,
-  .photo-grid{
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-  }
-
-  .card{
-    padding:16px;
-  }
-
-  .card h3{
-    font-size:14px;
-  }
-
-  .info{
-    font-size:12px;
-  }
-
-  .photo img{
-    height:140px;
-  }
-
-  .social-icons{
-    flex-direction:column;
-    align-items:center;
-  }
-
-  .social-icons a{
-    width:220px;
-    justify-content:center;
-  }
-
-  .apply-btn{
-    font-size:15px;
-    padding:12px 20px;
-  }
-
-  .submit-btn{
-    width:100%;
-  }
-}
-
-@keyframes fadeIn{
-  from{
-    opacity:0;
-    transform:translateY(-10px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NAVODAYA CONVENT & HIGH SCHOOL</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:#071739;
+      color:white;
+      overflow-x:hidden;
+      line-height:1.6;
+      padding-top:95px;
+    }
+
+    img{
+      max-width:100%;
+      display:block;
+    }
+
+    /* NAVBAR */
+    nav{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      background:rgba(4,15,40,0.96);
+      backdrop-filter:blur(10px);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:14px 35px;
+      z-index:1000;
+      box-shadow:0 5px 20px rgba(0,0,0,0.4);
+      animation:slideDown 1s ease;
+    }
+
+    .logo-box{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      width:100%;
+    }
+
+    .logo-box img{
+      width:58px;
+      height:58px;
+      border-radius:50%;
+      background:white;
+      padding:3px;
+      border:2px solid white;
+      transition:0.5s;
+      flex-shrink:0;
+    }
+
+    .logo-box img:hover{
+      transform:rotate(360deg);
+    }
+
+    .school-title h2{
+      font-size:22px;
+      color:white;
+      line-height:1.2;
+    }
+
+    .school-title p{
+      font-size:12px;
+      color:#d9d9d9;
+      margin-top:2px;
+    }
+
+    .menu{
+      display:flex;
+      gap:18px;
+      align-items:center;
+    }
+
+    .menu a{
+      position:relative;
+      text-decoration:none;
+      color:white;
+      font-size:16px;
+      font-weight:600;
+      padding:10px 16px;
+      border-radius:10px;
+      transition:0.4s;
+      overflow:hidden;
+      z-index:1;
+    }
+
+    .menu a::before{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:0;
+      width:0%;
+      height:100%;
+      background:white;
+      z-index:-1;
+      transition:0.4s;
+      border-radius:10px;
+    }
+
+    .menu a:hover::before{
+      width:100%;
+    }
+
+    .menu a:hover{
+      color:#071739;
+      transform:translateY(-2px);
+    }
+
+    .menu-btn{
+      display:none;
+      font-size:32px;
+      color:white;
+      cursor:pointer;
+      user-select:none;
+      margin-left:auto;
+    }
+
+    /* HEADER */
+    header{
+      background:linear-gradient(to right,#0d1f4f,#13306d);
+      text-align:center;
+      padding:45px 20px;
+    }
+
+    header h1{
+      font-size:42px;
+      margin-bottom:10px;
+    }
+
+    header p{
+      font-size:18px;
+      color:#e0e0e0;
+    }
+
+    /* HERO */
+    .hero{
+      background:url('https://images.unsplash.com/photo-1509062522246-3755977927d7') center/cover;
+      min-height:500px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:20px;
+      text-align:center;
+    }
+
+    .hero-box{
+      background:rgba(0,0,0,0.65);
+      padding:40px;
+      border-radius:20px;
+      max-width:700px;
+      animation:fadeUp 1s ease;
+    }
+
+    .hero h2{
+      font-size:50px;
+      margin-bottom:15px;
+    }
+
+    .hero p{
+      font-size:24px;
+    }
+
+    /* SECTION BASE */
+    section{
+      padding:60px 30px;
+      text-align:center;
+    }
+
+    section h2{
+      font-size:36px;
+      margin-bottom:25px;
+      color:white;
+    }
+
+    .about p{
+      max-width:900px;
+      margin:auto;
+      font-size:20px;
+      color:#f0f0f0;
+    }
+
+    /* SIDE-BY-SIDE FACILITIES + PHOTOS */
+    .split-section{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:24px;
+      align-items:start;
+      padding:60px 30px;
+    }
+
+    .panel{
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.12);
+      border-radius:22px;
+      padding:24px;
+      box-shadow:0 8px 24px rgba(0,0,0,0.22);
+      overflow:hidden;
+    }
+
+    .panel h2{
+      margin-bottom:20px;
+    }
+
+    /* FACILITIES */
+    .facility-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .card{
+      background:white;
+      color:#071739;
+      padding:14px;
+      border-radius:16px;
+      box-shadow:0 5px 18px rgba(0,0,0,0.22);
+      cursor:pointer;
+      transition:0.35s ease;
+      border:1px solid #dfe7ff;
+      min-height:92px;
+      overflow:hidden;
+      animation:cardFloat 4s ease-in-out infinite;
+    }
+
+    .card:hover{
+      transform:translateY(-6px) scale(1.02);
+    }
+
+    .card h3{
+      font-size:16px;
+      margin-bottom:8px;
+      color:#0d1f4f;
+    }
+
+    .info{
+      max-height:0;
+      overflow:hidden;
+      opacity:0;
+      transition:0.45s ease;
+      font-size:14px;
+      color:#333;
+    }
+
+    .card.active .info{
+      max-height:120px;
+      opacity:1;
+      margin-top:8px;
+    }
+
+    /* PHOTOS */
+    .photo-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .photo{
+      border-radius:16px;
+      overflow:hidden;
+      cursor:pointer;
+      position:relative;
+      box-shadow:0 5px 18px rgba(0,0,0,0.25);
+      transition:0.35s ease;
+      animation:photoZoom 5s ease-in-out infinite;
+    }
+
+    .photo:hover{
+      transform:scale(1.03);
+    }
+
+    .photo img{
+      width:100%;
+      height:165px;
+      object-fit:cover;
+      display:block;
+      transition:0.4s;
+    }
+
+    .photo:hover img{
+      transform:scale(1.08);
+    }
+
+    /* PHOTO MODAL */
+    .photo-modal{
+      display:none;
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.88);
+      z-index:3000;
+      justify-content:center;
+      align-items:center;
+      padding:20px;
+    }
+
+    .photo-modal.show{
+      display:flex;
+    }
+
+    .modal-img{
+      max-width:min(92vw,850px);
+      max-height:85vh;
+      border-radius:18px;
+      animation:zoomIn 0.25s ease;
+      box-shadow:0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .close-btn{
+      position:absolute;
+      top:18px;
+      right:24px;
+      font-size:42px;
+      color:#fff;
+      cursor:pointer;
+      line-height:1;
+      user-select:none;
+    }
+
+    /* CONTACT */
+    .contact{
+      background:#0d1f4f;
+    }
+
+    .contact p{
+      font-size:20px;
+      margin:10px;
+    }
+
+    /* SOCIAL */
+    .social-icons{
+      display:flex;
+      justify-content:center;
+      gap:20px;
+      flex-wrap:wrap;
+      margin-top:25px;
+    }
+
+    .social-icons a{
+      text-decoration:none;
+      background:white;
+      padding:12px 18px;
+      border-radius:18px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-size:16px;
+      font-weight:bold;
+      color:#071739;
+      transition:0.4s;
+    }
+
+    .social-icons a:hover{
+      transform:translateY(-5px);
+    }
+
+    .social-icons img{
+      width:28px;
+      height:28px;
+    }
+
+    /* BUTTON */
+    .apply-btn{
+      margin-top:30px;
+      background:white;
+      color:#071739;
+      border:none;
+      padding:15px 35px;
+      font-size:18px;
+      font-weight:bold;
+      border-radius:30px;
+      cursor:pointer;
+      transition:0.4s;
+    }
+
+    .apply-btn:hover{
+      background:#dbe7ff;
+    }
+
+    /* FORM */
+    .form-box{
+      display:none;
+      max-width:650px;
+      margin:30px auto;
+      background:white;
+      color:#071739;
+      padding:30px;
+      border-radius:20px;
+      box-shadow:0 5px 20px rgba(0,0,0,0.3);
+      text-align:left;
+    }
+
+    .form-box input,
+    .form-box select,
+    .form-box textarea{
+      width:100%;
+      padding:15px;
+      margin:12px 0;
+      border:1px solid #ccc;
+      border-radius:10px;
+      font-size:15px;
+      outline:none;
+    }
+
+    .submit-btn{
+      background:#071739;
+      color:white;
+      border:none;
+      padding:15px 30px;
+      border-radius:25px;
+      cursor:pointer;
+      font-size:16px;
+    }
+
+    .submit-btn:hover{
+      background:#0d1f4f;
+    }
+
+    /* FOOTER */
+    footer{
+      background:#04112e;
+      padding:20px;
+      text-align:center;
+      margin-top:30px;
+    }
+
+    /* ANIMATIONS */
+    @keyframes slideDown{
+      from{
+        transform:translateY(-100%);
+        opacity:0;
+      }
+      to{
+        transform:translateY(0);
+        opacity:1;
+      }
+    }
+
+    @keyframes fadeUp{
+      from{
+        opacity:0;
+        transform:translateY(20px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @keyframes cardFloat{
+      0%,100%{
+        transform:translateY(0);
+      }
+      50%{
+        transform:translateY(-6px);
+      }
+    }
+
+    @keyframes photoZoom{
+      0%,100%{
+        transform:scale(1);
+      }
+      50%{
+        transform:scale(1.02);
+      }
+    }
+
+    @keyframes zoomIn{
+      from{
+        transform:scale(0.8);
+        opacity:0;
+      }
+      to{
+        transform:scale(1);
+        opacity:1;
+      }
+    }
+
+    @keyframes fadeIn{
+      from{
+        opacity:0;
+        transform:translateY(-10px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:900px){
+      .split-section{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media(max-width:768px){
+      nav{
+        flex-direction:column;
+        align-items:flex-start;
+        padding:15px 20px;
+      }
+
+      .logo-box{
+        width:100%;
+        justify-content:space-between;
+      }
+
+      .menu-btn{
+        display:block;
+      }
+
+      .menu{
+        display:none;
+        width:100%;
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:12px;
+        margin-top:15px;
+        animation:fadeIn 0.5s ease;
+      }
+
+      .menu.active{
+        display:flex;
+      }
+
+      .menu a{
+        background:rgba(255,255,255,0.08);
+        width:45%;
+        text-align:center;
+        padding:12px;
+        font-size:15px;
+      }
+
+      .school-title h2{
+        font-size:17px;
+      }
+
+      .school-title p{
+        font-size:11px;
+      }
+
+      header h1{
+        font-size:30px;
+      }
+
+      .hero{
+        min-height:380px;
+      }
+
+      .hero-box{
+        padding:25px;
+      }
+
+      .hero h2{
+        font-size:30px;
+      }
+
+      .hero p{
+        font-size:18px;
+      }
+
+      section{
+        padding:45px 18px;
+      }
+
+      section h2{
+        font-size:28px;
+      }
+
+      .about p{
+        font-size:17px;
+      }
+
+      .facility-grid,
+      .photo-grid{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .photo img{
+        height:180px;
+      }
+
+      .contact p{
+        font-size:17px;
+      }
+
+      .form-box{
+        padding:20px;
+      }
+    }
+
+    @media(max-width:480px){
+      .menu a{
+        width:48%;
+        font-size:14px;
+        padding:10px;
+      }
+
+      .logo-box img{
+        width:50px;
+        height:50px;
+      }
+
+      .school-title h2{
+        font-size:15px;
+      }
+
+      header h1{
+        font-size:24px;
+      }
+
+      .hero{
+        min-height:320px;
+      }
+
+      .hero h2{
+        font-size:25px;
+      }
+
+      .hero p{
+        font-size:15px;
+      }
+
+      section h2{
+        font-size:24px;
+      }
+
+      .about p{
+        font-size:15px;
+      }
+
+      .facility-grid,
+      .photo-grid{
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+      }
+
+      .card{
+        padding:12px;
+        min-height:82px;
+      }
+
+      .card h3{
+        font-size:13px;
+      }
+
+      .info{
+        font-size:11px;
+      }
+
+      .photo img{
+        height:120px;
+      }
+
+      .social-icons{
+        flex-direction:column;
+        align-items:center;
+      }
+
+      .social-icons a{
+        width:220px;
+        justify-content:center;
+      }
+
+      .apply-btn{
+        font-size:15px;
+        padding:12px 20px;
+      }
+
+      .submit-btn{
+        width:100%;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<nav>
-  <div class="logo-box">
-    <img src="logo1.jpeg" alt="School Logo">
-    <div class="school-title">
-      <h2>NAVODAYA CONVENT & HIGH SCHOOL</h2>
-      <p>Avathi, Devanahalli(T), Bangalore Rural District</p>
+  <nav>
+    <div class="logo-box">
+      <img src="logo1.jpeg" alt="School Logo">
+      <div class="school-title">
+        <h2>NAVODAYA CONVENT & HIGH SCHOOL</h2>
+        <p>Avathi, Devanahalli(T), Bangalore Rural District</p>
+      </div>
+      <div class="menu-btn" onclick="toggleMenu()">☰</div>
     </div>
-    <div class="menu-btn" onclick="toggleMenu()">☰</div>
-  </div>
 
-  <div class="menu" id="menu">
-    <a href="#">Home</a>
-    <a href="#about">About</a>
-    <a href="#facilitiesPhotos">Facilities & Photos</a>
-    <a href="#contact">Contact</a>
-  </div>
-</nav>
+    <div class="menu" id="menu">
+      <a href="#">Home</a>
+      <a href="#about">About</a>
+      <a href="#facilitiesPhotos">Facilities & Photos</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
 
-<header>
-  <h1>NAVODAYA CONVENT & HIGH SCHOOL</h1>
-  <p>Quality Education for a Bright Future</p>
-</header>
+  <header>
+    <h1>NAVODAYA CONVENT & HIGH SCHOOL</h1>
+    <p>Quality Education for a Bright Future</p>
+  </header>
 
-<div class="hero">
-  <div class="hero-box">
-    <h2>Welcome to Our School</h2>
-    <p>Learning Today, Leading Tomorrow</p>
-  </div>
-</div>
-
-<section id="about" class="about">
-  <h2>About Our School</h2>
-  <p>
-    NAVODAYA CONVENT & HIGH SCHOOL was established in 1988 and is managed by Pvt. Unaided.
-    It is located in a rural area and provides quality education with discipline, values and excellence.
-    The school has Grades 1 to 10 and is co-educational.
-  </p>
-</section>
-
-<section id="facilitiesPhotos" class="split-section">
-  <div class="panel">
-    <h2>Our Facilities</h2>
-    <div class="facility-grid">
-      <div class="card" onclick="toggleInfo(this)">
-        <h3>Smart Classrooms</h3>
-        <div class="info">Interactive smart boards, projectors and digital learning tools.</div>
-      </div>
-
-      <div class="card" onclick="toggleInfo(this)">
-        <h3>Robotics & AI</h3>
-        <div class="info">Hands-on robotics projects and AI learning classes.</div>
-      </div>
-
-      <div class="card" onclick="toggleInfo(this)">
-        <h3>Computer Lab</h3>
-        <div class="info">Modern computer systems for coding and digital education.</div>
-      </div>
-
-      <div class="card" onclick="toggleInfo(this)">
-        <h3>Science Lab</h3>
-        <div class="info">Well-equipped practical laboratories for experiments.</div>
-      </div>
-
-      <div class="card" onclick="toggleInfo(this)">
-        <h3>Library</h3>
-        <div class="info">Academic books, journals and references.</div>
-      </div>
-
-      <div class="card" onclick="toggleInfo(this)">
-        <h3>Sports</h3>
-        <div class="info">Indoor and outdoor sports activities.</div>
-      </div>
+  <div class="hero">
+    <div class="hero-box">
+      <h2>Welcome to Our School</h2>
+      <p>Learning Today, Leading Tomorrow</p>
     </div>
   </div>
 
-  <div class="panel">
-    <h2>School Photos</h2>
-    <div class="photo-grid">
-      <div class="photo">
-        <img src="unnamed.webp" alt="School Photo 1">
-      </div>
+  <section id="about" class="about">
+    <h2>About Our School</h2>
+    <p>
+      NAVODAYA CONVENT & HIGH SCHOOL was established in 1988 and is managed by Pvt. Unaided.
+      It is located in a rural area and provides quality education with discipline, values and excellence.
+      The school has Grades 1 to 10 and is co-educational.
+    </p>
+  </section>
 
-      <div class="photo">
-        <img src="school.jpg.jpeg" alt="School Photo 2">
-      </div>
-      <div class="photo">
-        <img src="saraswati.jpg.jpeg" alt="School Photo 3">
-    </div>
-      <div class="photo">
-        <img src="krishna .jpg.jpeg" alt="School Photo 4">
+  <section id="facilitiesPhotos" class="split-section">
+    <div class="panel">
+      <h2>Our Facilities</h2>
+
+      <div class="facility-grid">
+        <div class="card" onclick="toggleInfo(this)">
+          <h3>Smart Classrooms</h3>
+          <div class="info">Interactive smart boards, projectors and digital learning tools.</div>
         </div>
-      <div class="photo">
-        <img src="kreedo.jpg file.jpeg" alt="School Photo 5">
+
+        <div class="card" onclick="toggleInfo(this)">
+          <h3>Robotics & AI</h3>
+          <div class="info">Hands-on robotics projects and AI learning classes.</div>
         </div>
-      <div class="photo">
-        <img src="kreedo.jpg.jpeg" alt="School Photo 6">
-      </div>
-      <div class="photo">
-        <img src="anjaneya.jpg.jpeg" alt="School Photo 7">
-      </div>
-      <div class="photo">
-        <img src="dance.jpeg" alt="School Photo 7">
-      </div>
 
+        <div class="card" onclick="toggleInfo(this)">
+          <h3>Computer Lab</h3>
+          <div class="info">Modern computer systems for coding and digital education.</div>
+        </div>
+
+        <div class="card" onclick="toggleInfo(this)">
+          <h3>Science Lab</h3>
+          <div class="info">Well-equipped practical laboratories for experiments.</div>
+        </div>
+
+        <div class="card" onclick="toggleInfo(this)">
+          <h3>Library</h3>
+          <div class="info">Academic books, journals and references.</div>
+        </div>
+
+        <div class="card" onclick="toggleInfo(this)">
+          <h3>Sports</h3>
+          <div class="info">Indoor and outdoor sports activities.</div>
+        </div>
+      </div>
     </div>
+
+    <div class="panel">
+      <h2>School Photos</h2>
+
+      <div class="photo-grid">
+        <div class="photo" onclick="openPhoto('unnamed.webp')">
+          <img src="unnamed.webp" alt="School Photo 1">
+        </div>
+
+        <div class="photo" onclick="openPhoto('school.jpg.jpeg')">
+          <img src="school.jpg.jpeg" alt="School Photo 2">
+        </div>
+
+        <div class="photo" onclick="openPhoto('saraswati.jpg.jpeg')">
+          <img src="saraswati.jpg.jpeg" alt="School Photo 3">
+        </div>
+
+        <div class="photo" onclick="openPhoto('krishna .jpg.jpeg')">
+          <img src="krishna .jpg.jpeg" alt="School Photo 4">
+        </div>
+
+        <div class="photo" onclick="openPhoto('kreedo.jpg file.jpeg')">
+          <img src="kreedo.jpg file.jpeg" alt="School Photo 5">
+        </div>
+
+        <div class="photo" onclick="openPhoto('kreedo.jpg.jpeg')">
+          <img src="kreedo.jpg.jpeg" alt="School Photo 6">
+        </div>
+
+        <div class="photo" onclick="openPhoto('anjaneya.jpg.jpeg')">
+          <img src="anjaneya.jpg.jpeg" alt="School Photo 7">
+        </div>
+
+        <div class="photo" onclick="openPhoto('dance.jpeg')">
+          <img src="dance.jpeg" alt="School Photo 8">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Contact Us</h2>
+    <p><b>Phone:</b> 8105857102, 9663491387</p>
+    <p><b>Address:</b> Avathi, Devanahalli(T), Bangalore Rural District</p>
+
+    <h3 style="margin-top:30px;">Follow Us</h3>
+
+    <div class="social-icons">
+      <a href="https://www.instagram.com/navodaya_avathi?igsh=MW4xdHBvbjJuOGxsZA==" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+        Instagram
+      </a>
+
+      <a href="https://youtube.com/@navodayaconventhighschool-e5n?si=AgUPOiDoVUPXqtDt" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
+        YouTube
+      </a>
+    </div>
+
+    <button class="apply-btn" onclick="openForm()">
+      Admissions Are Open - Apply Now
+    </button>
+
+    <div class="form-box" id="admissionForm">
+      <h2>Admission Form</h2>
+
+      <form>
+        <input type="text" placeholder="Student Name" required>
+        <input type="text" placeholder="Parent Name" required>
+        <input type="tel" placeholder="Phone Number" required>
+        <input type="email" placeholder="Email">
+
+        <select required>
+          <option value="">Select Grade</option>
+          <option>1st Standard</option>
+          <option>2nd Standard</option>
+          <option>3rd Standard</option>
+          <option>4th Standard</option>
+          <option>5th Standard</option>
+          <option>6th Standard</option>
+          <option>7th Standard</option>
+          <option>8th Standard</option>
+          <option>9th Standard</option>
+          <option>10th Standard</option>
+        </select>
+
+        <textarea placeholder="Address" rows="4"></textarea>
+
+        <button class="submit-btn" type="submit">Submit Application</button>
+      </form>
+    </div>
+  </section>
+
+  <div id="photoModal" class="photo-modal" onclick="closePhoto(event)">
+    <span class="close-btn" onclick="closePhoto(event)">&times;</span>
+    <img id="modalImg" class="modal-img" src="" alt="Large preview">
   </div>
-</section>
 
-<section id="contact" class="contact">
-  <h2>Contact Us</h2>
-  <p><b>Phone:</b> 8105857102,9663491387</p>
-  <p><b>Address:</b> Avathi, Devanahalli(T), Bangalore Rural District</p>
+  <footer>
+    <p>© 2026 NAVODAYA CONVENT & HIGH SCHOOL | All Rights Reserved</p>
+  </footer>
 
-  <h3 style="margin-top:30px;">Follow Us</h3>
+  <script>
+    function toggleMenu(){
+      document.getElementById("menu").classList.toggle("active");
+    }
 
-  <div class="social-icons">
-    <a href="https://www.instagram.com/navodaya_avathi?igsh=MW4xdHBvbjJuOGxsZA==" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
-      Instagram
-    </a>
+    function toggleInfo(card){
+      const allCards = document.querySelectorAll(".card");
+      allCards.forEach(c => {
+        if(c !== card) c.classList.remove("active");
+      });
+      card.classList.toggle("active");
+    }
 
-    <a href="https://youtube.com/@navodayaconventhighschool-e5n?si=AgUPOiDoVUPXqtDt" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
-      YouTube
-    </a>
-  </div>
+    function openForm(){
+      const form = document.getElementById("admissionForm");
+      form.style.display = (form.style.display === "block") ? "none" : "block";
+      if(form.style.display === "block"){
+        form.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
 
-  <button class="apply-btn" onclick="openForm()">
-    Admissions Are Open - Apply Now
-  </button>
+    function openPhoto(src){
+      const modal = document.getElementById("photoModal");
+      const modalImg = document.getElementById("modalImg");
+      modalImg.src = src;
+      modal.classList.add("show");
+    }
 
-  <div class="form-box" id="admissionForm">
-    <h2>Admission Form</h2>
+    function closePhoto(event){
+      const modal = document.getElementById("photoModal");
 
-    <form>
-      <input type="text" placeholder="Student Name" required>
-      <input type="text" placeholder="Parent Name" required>
-      <input type="tel" placeholder="Phone Number" required>
-      <input type="email" placeholder="Email">
+      if(event && event.target && event.target !== modal && event.target.className !== "close-btn"){
+        return;
+      }
 
-      <select required>
-        <option value="">Select Grade</option>
-        <option>1st Standard</option>
-        <option>2nd Standard</option>
-        <option>3rd Standard</option>
-        <option>4th Standard</option>
-        <option>5th Standard</option>
-        <option>6th Standard</option>
-        <option>7th Standard</option>
-        <option>8th Standard</option>
-        <option>9th Standard</option>
-        <option>10th Standard</option>
-      </select>
+      modal.classList.remove("show");
+      document.getElementById("modalImg").src = "";
+    }
 
-      <textarea placeholder="Address"></textarea>
-
-      <button class="submit-btn" type="submit">Submit Application</button>
-    </form>
-  </div>
-</section>
-
-<footer>
-  <p>© 2026 NAVODAYA CONVENT & HIGH SCHOOL | All Rights Reserved</p>
-</footer>
-
-<script>
-function toggleMenu(){
-  document.getElementById("menu").classList.toggle("active");
-}
-
-function toggleInfo(card){
-  card.classList.toggle("active");
-}
-
-function openForm(){
-  const form = document.getElementById("admissionForm");
-  form.style.display = (form.style.display === "block") ? "none" : "block";
-}
-</script>
+    document.addEventListener("keydown", function(e){
+      if(e.key === "Escape"){
+        closePhoto();
+      }
+    });
+  </script>
 
 </body>
 </html>
